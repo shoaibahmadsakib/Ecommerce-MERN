@@ -1,4 +1,4 @@
-import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAIL, PRODUCT_CREATE_RESET, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_SUCCESS, PRODUCT_CREATE_FAIL, PRODUCT_UPDATE_REQUEST, PRODUCT_UPDATE_SUCCESS, PRODUCT_UPDATE_FAIL, PRODUCT_UPDATE_RESET } from '../constants/productsConstants'
+import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAIL, PRODUCT_CREATE_RESET, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_SUCCESS, PRODUCT_CREATE_FAIL, PRODUCT_UPDATE_REQUEST, PRODUCT_UPDATE_SUCCESS, PRODUCT_UPDATE_FAIL, PRODUCT_UPDATE_RESET, PRODUCT_TOP_REQUEST, PRODUCT_TOP_SUCCESS, PRODUCT_TOP_FAIL } from '../constants/productsConstants'
 import { PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL } from '../constants/productsConstants'
 
 
@@ -70,6 +70,23 @@ export const productUpdateReducer = (state = { product: {} }, action) => {
          return { loding: false, error: action.payload }
       case PRODUCT_UPDATE_RESET:
          return {}
+      default:
+         return state
+   }
+}
+
+export const productTopRatedReducer = (state = { products: [] }, action) => {
+   switch (action.type) {
+      case PRODUCT_TOP_REQUEST:
+         return { loding: true, products: [] }
+      case PRODUCT_TOP_SUCCESS:
+         return {
+            loding: false, products: action.payload
+
+         }
+      case PRODUCT_TOP_FAIL:
+         return { loding: false, error: action.payload }
+
       default:
          return state
    }

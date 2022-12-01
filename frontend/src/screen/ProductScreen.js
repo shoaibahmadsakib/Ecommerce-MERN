@@ -1,20 +1,21 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Button, Card, Col, Form, Image, ListGroup, ListGroupItem, Row } from 'react-bootstrap'
-import { Link  } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import Rating from '../components/Rating'
 import { useDispatch, useSelector } from 'react-redux'
 import { listProductDetails } from '../actions/productAction'
 import Loading from '../components/Loading'
 import Message from '../components/Message'
+import Meta from '../components/Meta'
 
 // import products from '../products'
 
-const ProductScreen = ({  history, match }) => {
-   
-   
-   
+const ProductScreen = ({ history, match }) => {
+
+
+
     const [qty, setQty] = useState(1)
     // const [product,setProduct ]=useState({})
     const dispatch = useDispatch()
@@ -30,12 +31,12 @@ const ProductScreen = ({  history, match }) => {
 
 
     const addTocartHandler = () => {
-      history.push(`/cart/${match.params.id}?qty=${qty}`)
+        history.push(`/cart/${match.params.id}?qty=${qty}`)
     }
 
     return (
         <>
-
+            <Meta title={product.name} />
             <Link className='btn btn-light my-3' to="/">GO back</Link>
             {
                 loading ? <Loading /> : error ? <Message variant="danger">{error}</Message> :
